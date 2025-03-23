@@ -14,5 +14,12 @@ jobs:
       - name: Build Docker Image
         run: docker build -t parvgupta123/fastapi-app:latest .
 
+<<<<<<< patch-1
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t parvgupta123/my-fast-api:latest .
+          docker push parvgupta123/my-fast-api:latest
+=======
       - name: Push Docker Image
         run: docker push parvgupta123/fastapi-app:latest
+>>>>>>> main
