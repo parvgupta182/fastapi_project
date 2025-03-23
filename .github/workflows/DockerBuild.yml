@@ -17,5 +17,5 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t <your-dockerhub-username>/<your-image-name>:latest .
-          docker push <your-dockerhub-username>/<your-image-name>:latest
+          docker build -t parvgupta123/my-fast-api:latest .
+          docker push parvgupta123/my-fast-api:latest
