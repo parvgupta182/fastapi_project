@@ -1,25 +1,18 @@
-# Use Ubuntu as the base image
-FROM ubuntu:latest
+# 1. Python ka lightweight version use karein
+FROM python:3.10-slim
 
-# Set environment variables to avoid interactive prompts
-ENV DEBIAN_FRONTEND=noninteractive 
-
-# Install required packages
-RUN apt update && apt install -y python3 python3-pip python3-venv
-
-# Set the working directory
+# 2. Working directory set karein
 WORKDIR /app
 
-# Copy the application code
-COPY . /app
+# 3. Dependencies copy karein aur install karein
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Create a virtual environment and install dependencies
-RUN python3 -m venv /app/venv && \
-    /app/venv/bin/pip install --upgrade pip && \
-    /app/venv/bin/pip install -r requirements.txt
+# 4. Poora code copy karein
+COPY . .
 
-# Expose port 8000
+# 5. Port expose karein
 EXPOSE 8000
 
-# Use the virtual environment to run FastAPI
-CMD ["/app/venv/bin/uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# 6. FastAPI ko run karein
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
